@@ -1,0 +1,87 @@
+﻿@model OtelRezervasyonListViewModel
+@{
+    ViewData["Title"] = "RezervasyonİptalKaldir";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<form asp-action="Kaldir" asp-controller="OtelRezervasyon">
+    <input type="hidden" name="id" asp-for="@Model.Id" />
+    <div class="row">
+        <div class="col-md-8" style="margin-top:30px; margin-left:20px;">
+            <div class="card" @*style="margin-top:20px;"*@>
+                <h5 class="card-header" style="font-size:medium;">İletişim Bilgileri</h5>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Ad</label>
+                                <input disabled asp-for="@Model.Ad" class="form-control" style="font-size:medium;" />
+
+                            </div>
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Soyad</label>
+                                <input disabled asp-for="@Model.Soyad" class="form-control" style="font-size:medium;" />
+
+                            </div>
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small; ">Cinsiyet</label>
+                                <select disabled asp-for="Cinsiyet" class="form-control" style="font-size:small;">
+                                    @*<span asp-validation-for="Ycinsiyet" class="text-danger"></span>*@
+                                    <option>KADIN</option>
+                                    <option>ERKEK</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Email</label>
+                                <input disabled asp-for="Email" class="form-control" style="font-size:medium;" />
+
+                            </div>
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Tc Kimlik Numarası </label>
+                                <input disabled asp-for="Tc" class="form-control" style="font-size:medium;" />
+
+                            </div>
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Telefon</label>
+                                <input disabled asp-for="Telefon" class="form-control" style="font-size:medium;" />
+                            </div>
+                        </div>
+
+                    </p>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-3" style="margin-top:30px;">
+            <div class="card">
+                <h5 class="card-header" style="font-size:medium; text-align:center;">Otel Bilgileri</h5>
+                <div class="card-body">
+                    @foreach (var item in ViewBag.OtelBilgi)
+                    {
+                        <h5 class="card-title" style="text-align:center; font-size:medium;">@item.OtelAd</h5>
+                        <img src="~/img/@item.Picture" alt="@item.Picture" style="width:300px; height:320px; align-content:center;" />
+                        <div class="row">
+                            <p style="text-align:left;">Rezervasyon Tarihi: <a href="#" style="text-decoration:none; text-align:right; color:#848484;"> @item.GirisTarihi.ToString("dd/MM/yyyy")-@item.CikisTarihi.ToString("dd/MM/yyyy")</a></p>
+                        </div>
+                        <div class="row">
+                            <p style="text-align:left; ">Oda Tipi:  @item.OdaTipi</p>
+                        </div>
+                        <div class="row">
+                            <p style="text-align:left;">Ödenen Tutar: @ViewBag.Odenecektutar TL</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div style="text-align:center; margin-bottom:50px; margin-top:30px; ">
+                <button style="width:300px; height:50px; font-size:medium;" type="submit" class="btn btn-danger">İptal et</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+

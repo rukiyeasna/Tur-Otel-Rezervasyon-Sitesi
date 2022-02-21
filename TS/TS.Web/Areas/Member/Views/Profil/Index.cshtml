@@ -1,0 +1,84 @@
+﻿@model AppUserViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+@*<form class="w-75 mx-auto p-3" method="post" enctype="multipart/form-data">
+    <h4><strong>FİLM EKLEME</strong></h4>
+    <br />
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label>Ad</label>
+        <input asp-for="Name" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Soyad</label>
+        <input asp-for="Surname" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Kullanıcı Adı</label>
+        <span asp-validation-for="Username" class="text-danger"></span>
+        <input asp-for="Username" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="Email" type="text" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm mt-4">Kaydet</button>
+</form>*@
+
+
+<div class="col-12 grid-margin" style="margin-bottom:300px; margin-top:50px;">
+    <div class="">
+        <div class="card-body">                      
+                <form class="w-75 mx-auto" asp-action="Index" asp-controller="Profil" method="post" >
+                    <p class="card-description" style="font-size:x-large;">
+                        ÜYELİK BİLGİLERİ
+                    </p>
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" style="font-size:medium;">Ad</label>
+                                <div class="col-sm-9">
+                                    <input style="font-size:medium;" type="text" class="form-control" asp-for="@Model.Name" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" style="font-size:medium;">Soyad</label>
+                                <div class="col-sm-9">
+                                    <input style="font-size:medium;" type="text" class="form-control" asp-for="@Model.Surname" />
+                                    <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" style="font-size:medium;">Kullanıcı Adı</label>
+                                <div class="col-sm-9">
+                                    <input style="font-size:medium;" type="text" class="form-control" asp-for="@Model.Username" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" style="font-size:medium;">Email</label>
+                                <div class="col-sm-9">
+                                    <input style="font-size:medium;" type="text" class="form-control" asp-for="@Model.Email" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" asp-route-id="@Model.Id">Güncelle</button>
+                </form>
+        </div>
+    </div>
+</div>
+

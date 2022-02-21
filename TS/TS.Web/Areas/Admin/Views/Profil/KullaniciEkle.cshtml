@@ -1,0 +1,76 @@
+﻿@model AdminUserAddViewModel
+@{
+    ViewData["Title"] = "KullaniciEkle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">KULLANICI EKLE</h4>
+            <form class="form-sample" asp-action="KullaniciEkle" asp-controller="Profil" method="post">
+                <p class="card-description">
+                </p>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Ad</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Name" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Soyad</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Surname" />
+                                <span asp-validation-for="Surname" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Kullanıcı Adı</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Username" />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Email" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Telefon</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Phone" placeholder="5*********" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Şifre</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" asp-for="@Model.Password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm ">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>

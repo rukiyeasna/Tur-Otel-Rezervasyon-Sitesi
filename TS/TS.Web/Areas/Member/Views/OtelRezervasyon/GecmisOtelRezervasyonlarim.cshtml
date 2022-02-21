@@ -1,0 +1,90 @@
+﻿@model List<RezervasyonListViewModel>
+
+@{
+    ViewData["Title"] = "GecmisOtelRezervasyonlarim";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3" id="fh5co-tours" class="fh5co-section-gray">
+
+        <div class="list-group" style="margin-left:20px;  font-size:medium;">
+            <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                <div class="btn-group">
+                    <button style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">Tur Rezervasyon</button>
+                    <div class="dropdown-menu" style="width:100%; text-align:center; font-size:medium;">
+                        <a asp-action="Rezervasyonlarim" asp-controller="Rezervasyon" class="dropdown-item">AKTİF REZERVASYONLAR</a><br />
+                        <a asp-action="IptalRezervasyonlarim" asp-controller="Rezervasyon" class="dropdown-item">İPTAL REZERVASYONLAR</a><br />
+                        <a asp-action="GecmisRezervasyonlarim" asp-controller="Rezervasyon" class="dropdown-item">GEÇMİŞ REZERVASYONLAR</a>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">Otel Rezervasyon</button>
+                    <div class="dropdown-menu" style="width:100%; text-align:center; font-size:medium;">
+                        <a asp-action="OtelRezervasyonlarim" asp-controller="OtelRezervasyon" class="dropdown-item">AKTİF REZERVASYONLAR</a><br />
+                        <a asp-action="IptalOtelRezervasyonlarim" asp-controller="OtelRezervasyon" class="dropdown-item">İPTAL REZERVASYONLAR</a><br />
+                        <a asp-action="GecmisOtelRezervasyonlarim" asp-controller="OtelRezervasyon" class="dropdown-item">GEÇMİŞ REZERVASYONLAR</a>
+                    </div>
+                </div>
+            </div>        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div id="fh5co-blog-section" class="fh5co-section-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                        <h3>Geçmiş Otel Rezervasyonlarım</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row row-bottom-padded-md">
+                    <link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+                    @if (ViewBag.Sayim == 0)
+                    {
+                        <div class="container">
+                            <h4>Herhangi bir rezervasyonunuz bulunmamaktadır.</h4>
+                        </div>
+                    }
+
+                    else
+                    {
+
+                        @foreach (var item in ViewBag.Rezervasyon)
+                        {
+
+                            <div class="col-md-4" style="margin-top:30px; margin-bottom:300px; margin-left:50px;">
+                                <div class="card">
+                                    <h5 class="card-header" style="font-size:medium; text-align:center;">Otel Bilgileri</h5>
+                                    <div class="card-body">
+                                        <h5 class="card-title" style="text-align:center; font-size:medium;">@item.Otels.OtelAd</h5>
+                                        <a asp-action="OtelBilgileri" asp-controller="Otel" asp-route-id="@item.OtelId" asp-route-sehir="@item.Otels.Sehir" asp-route-otelad="@item.Otels.OtelAd">  <img src="~/img/@item.Otels.Picture" alt="@item.Otels.Picture" style="width:100%; height:100%; align-content:center;" /></a>
+                                        <div class="row">
+                                            <p style="text-align:left;">Rezervasyon Tarihi: <a href="#" style="text-decoration:none; text-align:right; color:#848484;"> @item.BaslangicTarih.ToString("dd/MM/yyyy")-@item.BitisTarih.ToString("dd/MM/yyyy")</a></p>
+                                        </div>
+                                        <div class="row">
+                                            <p style="text-align:left; ">Oda Tipi:  @item.OtelOdas.OdaTipi</p>
+                                        </div>
+
+                                        <div class="row">
+                                            <p style="text-align:left;">Odenen Tutar: @item.OdenenTutar TL</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <a asp-action="Degerlendir" asp-controller="OtelRezervasyon" asp-route-OtelId="@item.Otels.OtelId" asp-route-id="@item.Id" asp-route-AppUserId="@ViewBag.kullaniciId" style="text-align:center; font-size:medium;" class="btn btn-primary btn-sm">Değerlendir</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

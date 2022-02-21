@@ -1,0 +1,167 @@
+﻿@model OtelPuanViewModel
+@{
+    ViewData["Title"] = "Guncelle";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+<style>
+    body {
+        background-color: #fffdd0;
+    }
+</style>
+
+
+<div class="row" style="background-color:#fffdd0; margin-bottom:150px;">
+    <div class="row" style="margin-top:30px;">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" id="fh5co-tours" class="fh5co-section-gray">
+            <div class="list-group" style="margin-left:20px;  font-size:medium;">
+                <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                    <div class="btn-group">
+                        <a asp-action="Mesajlarim" asp-controller="Iletisim" style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle " data-toggle="">Gönderilen Mesajlar</a>
+                    </div>
+                    <div class="btn-group">
+                        <a asp-action="MesajlarimGelen" asp-controller="Iletisim" style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle " data-toggle="">Gelen Mesajlar</a>
+                    </div>
+                    <div class="btn-group">
+                        <a asp-action="Yorumlarim" asp-controller="Iletisim" style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle active" data-toggle="">Yorum & Değerlendirme</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form asp-action="Guncelle" asp-controller="Iletisim" method="post">
+            <div class="col-md-9">
+                <div style="margin-top:75px;" class="col-lg-8 grid-margin stretch-card">
+                    @*<div class="row">
+                        <div class="col-md-8" style="margin-top:30px; margin-left:20px;">*@
+                    <div class="card">
+                        <h5 class="card-header" style="font-size:medium;">Değerlendirme Bilgileri</h5>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text">
+                                <div class="row">
+                                    <input type="hidden" asp-for="@Model.OtelPuanId" />
+                                    <input type="hidden" asp-for="@Model.AppUserId" />
+                                    <input type="hidden" asp-for="@Model.OtelId" />
+                                    <input type="hidden" asp-for="@Model.Username" />
+                                    <div class="col-md-3">
+                                        <label style="color:#848484; font-size:small;">Fiyat Performans</label>
+                                        <select asp-for="@Model.FiyatDeger" class="form-control" style="font-size:medium;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label style="color:#848484; font-size:small;">Hizmet Kalitesi</label>
+                                        <select asp-for="@Model.HizmetDeger" class="form-control" style="font-size:medium;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label style="color:#848484; font-size:small;">Temizlik/Hijyen</label>
+                                        <select asp-for="@Model.TemizDeger" class="form-control" style="font-size:medium;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label style="color:#848484; font-size:small;">Personel</label>
+                                        <select asp-for="@Model.PersonelDeger" class="form-control" style="font-size:medium;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label style="color:#848484; font-size:small;">Oda Konforu</label>
+                                        <select asp-for="@Model.OdaDeger" class="form-control" style="font-size:medium;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label style="color:#848484; font-size:small;">Yiyecek/İçecek Kalitesi</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select asp-for="@Model.YiyecekDeger" class="form-control" style="font-size:medium;">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                                <option>10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <label style="color:#848484; font-size:small;">Yorum</label>
+                                        <textarea asp-for="@Model.Yorum" class="form-control" style="font-size:medium;"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:20px;">
+                                    <div class="col-md-3">
+                                        <button class="btn btn-primary" type="submit">Kaydet</button>
+                                    </div>
+                                </div>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

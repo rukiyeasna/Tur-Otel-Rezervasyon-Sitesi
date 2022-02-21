@@ -1,0 +1,175 @@
+﻿@model RezervasyonOdemeViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<form asp-action="Index" asp-controller="Rezervasyon" method="post">
+    <input type="hidden" name="yetiskin" value="@ViewBag.Yetiskin" />
+    <input type="hidden" name="cocuk" value="@ViewBag.Cocuk" />
+    <input type="hidden" name="id" value="@ViewBag.otelid" />
+    <input type="hidden" name="TurId" value="@ViewBag.TurId" />
+    <input type="hidden" asp-for="RezervasyonId" />
+    <input type="hidden" name="kullaniciid" value="@ViewBag.KullanıId" />
+    @*<input type="hidden" name="odenen" asp-for="@Model.OdenenTutar" value="@ViewBag.Odenecektutar " />*@
+    <input type="hidden" name="baslangic" value="@ViewBag.bas" />
+    <input type="hidden" name="bitis" value="@ViewBag.bit" />
+    <div class="row">
+        <div class="col-md-8" style="margin-top:30px; margin-left:20px;">
+            <div class="card" @*style="margin-top:20px;"*@>
+                <h5 class="card-header" style="font-size:medium;">İletişim Bilgileri</h5>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">
+                        <div class="row">
+                            <input type="hidden" asp-for="@Model.OdenenTutar" value="@ViewBag.Odenecektutar " />
+                            <div class="col-md-4">
+                                <label style="color:#848484; font-size:small;">Ad</label>
+                                <input asp-for="@Model.Yad" class="form-control" style="font-size:medium;" />
+                                <span style="font-size:small;" asp-validation-for="Yad" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="color:#848484; font-size:small;">Soyad</label>
+                                <input asp-for="@Model.Ysoyad" class="form-control" style="font-size:medium;" />
+                                <span style="font-size:small;" asp-validation-for="Ysoyad" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="color:#848484; font-size:small; ">Cinsiyet</label>
+                                <select asp-for="Ycinsiyet" class="form-control" style="font-size:small;" value="">
+                                    @*<span asp-validation-for="Ycinsiyet" class="text-danger"></span>*@
+                                    <option>KADIN</option>
+                                    <option>ERKEK</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label style="color:#848484; font-size:small;">Email</label>
+                                <input asp-for="Email" class="form-control" style="font-size:medium;"  placeholder="example@gmail.com" />
+                                <span style="font-size:small;" asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="color:#848484; font-size:small;">Tc Kimlik Numarası</label>
+                                <input asp-for="Ytc" class="form-control" style="font-size:medium;"  />
+                                <span style="font-size:small;" asp-validation-for="Ytc" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="color:#848484; font-size:small;">Telefon</label>
+                                <input asp-for="Telefon" placeholder="5*********" class="form-control" style="font-size:medium;"  />
+                                <span style="font-size:small;" asp-validation-for="Telefon" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </p>
+                </div>
+            </div>
+            <div class="card mt-5" @*style="margin-top:20px;"*@>
+                <h5 class="card-header" style="font-size:medium;">Ödeme Seçimi</h5>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                <label style="color:#848484; font-size:small;" class="form-check-label" for="flexRadioDefault1">
+                                    Kredi Kartı
+                                </label>
+                            </div>
+                            @*<div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                <label style="color:#848484; font-size:small;" class="form-check-label" for="flexRadioDefault2">
+                                    EFT
+                                </label>
+                            </div>*@
+                        </div>
+                </div>
+            </div>
+            <div class="card mt-5" @*style="margin-top:20px;"*@>
+                <h5 class="card-header" style="font-size:medium;">Ödeme Bilgileri</h5>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label style="color:#848484; font-size:small;">Kart Üzerindeki İsim</label>
+                                <input asp-for="@Model.CartName" class="form-control" style="font-size:medium;"  />
+                                <span style="font-size:small;" asp-validation-for="CartName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label style="color:#848484; font-size:small;">Kart Numarası</label>
+                                <input asp-for="@Model.CartNumber" class="form-control" style="font-size:medium;"  />
+                                <span style="font-size:small;" asp-validation-for="CartNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label style="color:#848484; font-size:small;">AY</label>
+                                <input asp-for="@Model.ExpirationMonth" class="form-control" style="font-size:medium;"  />
+                                <span style="font-size:small;" asp-validation-for="ExpirationMonth" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="color:#848484; font-size:small;">YIL</label>
+                                <input asp-for="@Model.ExpirationYear" class="form-control" style="font-size:medium;" />
+                                <span style="font-size:small;" asp-validation-for="ExpirationYear" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="color:#848484; font-size:small;">CVV</label>
+                                <input asp-for="@Model.CVV" class="form-control" style="font-size:medium;" />
+                                <span style="font-size:small;" asp-validation-for="CVV" class="text-danger"></span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-3" style="margin-top:30px;">
+            <div class="card">
+                <h5 class="card-header" style="font-size:medium; text-align:center;">Tur Bilgileri</h5>
+                <div class="card-body">
+                    @foreach (var item in ViewBag.OtelBilgi)
+                    {
+                        <h5 class="card-title" style="text-align:center; font-size:medium;">@item.TurBasligi</h5>
+                        <img src="~/img/@item.Picture" alt="@item.Picture" style="width:300px; height:320px; align-content:center;" />
+                        <div class="row">
+                            <p style="text-align:left;">Tur Tarihi: <a href="#" style="text-decoration:none; text-align:right; color:#848484;"> @item.BaslangicTarihi.ToString("dd/MM/yyyy")-@item.BitisTarihi.ToString("dd/MM/yyyy")</a></p>
+                        </div>
+                        <div class="row">
+                            <p style="text-align:left; ">Otel:  @item.FiyatTanimi</p>
+                        </div>
+                        <div class="row">
+                            <p style="text-align:left;">Tur Kategori: @item.TurAltKategori</p>
+                        </div>
+                        <div class="row">
+
+                            @if (ViewBag.Cocuk == 0)
+                            {
+                                <p style="text-align:left;">
+                                    Misafir: @ViewBag.Yetiskin Yetişkin
+                                </p>
+                            }
+                            else
+                            {
+                                <p style="text-align:left;">
+                                    Misafir: @ViewBag.Yetiskin Yetişkin @ViewBag.Cocuk Çocuk
+                                </p>
+                            }
+
+                        </div>
+
+
+                        <div class="row">
+                            <p style="text-align:left;">Ödeyeceğiniz Tutar: @ViewBag.Odenecektutar @item.ParaBirimi</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div style="text-align:center; margin-bottom:50px; margin-top:30px; ">
+                <button style="width:300px; height:50px; font-size:medium;" type="submit" class="btn btn-primary">Ödeme Yap</button>
+            </div>
+        </div>
+    </div>
+</form>

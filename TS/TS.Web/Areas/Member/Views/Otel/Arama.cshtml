@@ -1,0 +1,47 @@
+﻿@model List<OtelOdaViewModel>
+@{
+    ViewData["Title"] = "Arama";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div id="fh5co-blog-section" class="fh5co-section-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                <h3>
+                    @if (ViewBag.kategori != "null")
+                    {@ViewBag.kategori} ( @ViewBag.baslangic.ToString("dd/MM/yyyy") - @ViewBag.bitis.ToString("dd/MM/yyyy"))
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    @if (ViewBag.sayi == 0)
+    {<div class="container">
+            <h4>Aradığınız kriterlere uygun otel bulunmamaktadır.</h4>
+        </div>
+    }
+
+    <div class="container">
+        <div class="row row-bottom-padded-md">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="fh5co-blog animate-box">
+                        <img class="img-responsive" src="~/img/@item.Picture" alt="" style="width:360px; height:320px;">
+                        <div class="blog-text">
+                            <div class="prod-title">
+                                <h3>@item.OtelAd</h3>
+                                <span style="color: rgba(0, 0, 0, 0.6);" class="posted_by">@item.Sehir</span>
+                                @*<span class="posted_by">@item.GirisTarihi.ToString("dd/MM/yyyy")-@item.CikisTarihi.ToString("dd/MM/yyyy")</span>*@
+                                <span class="comment"><a asp-action="Favori" asp-controller="Otel" asp-route-userId="@ViewBag.KullaniciId" asp-route-otelId="@item.OtelId" data-bs-toggle="tooltip" data-bs-placement="top" title="Favorilerime Ekle"><i class="icon-heart"></i></a></span>
+                                <p><a asp-action="OtelBilgileri" asp-controller="Otel" asp-route-id="@item.OtelId" asp-route-otelad="@item.OtelAd">DETAYLAR...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+﻿@model List<TurListViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Aktif Turlar</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tur Id</th>
+                            <th>Tur Alt Kategori</th>
+                            <th>Tur Başlığı</th>
+                            <th>Başlangıç Tarihi</th>
+                            <th>Bitiş Tarihi</th>
+                            <th>Fiyat</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.TurId</td>
+                                <td>@item.TurAltKategori</td>
+                                <td>@item.TurBasligi</td>
+                                <td>@item.BaslangicTarihi.ToString("dd/MM/yyyy")</td>
+                                <td>@item.BitisTarihi.ToString("dd/MM/yyyy")</td>
+                                <td>@item.Fiyat TL</td>
+                                <td><a asp-action="TurBilgileri" asp-controller="Rezervasyon" asp-route-id="@item.TurId" class="btn btn-primary btn-rounded btn-fw">Detay</a></td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

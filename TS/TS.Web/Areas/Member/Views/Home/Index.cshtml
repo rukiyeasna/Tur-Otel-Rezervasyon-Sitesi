@@ -1,0 +1,245 @@
+﻿@model ViewOrtakModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div class="fh5co-hero">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url('file:///C:\Users\casper\Desktop\ARSO\TS\TS.Web\wwwroot\travel\images\cover_bg_1.jpg');">
+        <div class="desc">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-5">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">TUR</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">OTEL</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <form asp-action="Arama" asp-controller="Home" method="get">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="flights">
+                                        <div class="row">
+                                            <div class="col-xxs-12 col-xs-12 mt">
+                                                <div class="input-field">
+                                                    <label for="from">Tur Kategori</label>
+                                                    <select type="text" class="form-control" id="from-place" placeholder="" name="kategori">
+                                                        <option hidden value="null">Seçiniz</option>
+                                                        <option>Ege-Akdeniz Turları</option>
+                                                        <option>Karadeniz Turları</option>
+                                                        <option>İç Anadolu Turları</option>
+                                                        <option>Gap Turları</option>
+                                                        <option>Kapadokya Turları</option>
+                                                        <option>Butik Turları</option>
+                                                        <option>Hafta Sonu Turları</option>
+                                                        <option>Butik Turları</option>
+                                                        <option>Hafta Sonu Turları</option>
+                                                        <option>Avrupa Turları</option>
+                                                        <option>İtalya Turları</option>
+                                                        <option>Yunanistan Turları</option>
+                                                        <option>Balkan Turları</option>
+                                                        <option>Uzakdoğu Turları</option>
+                                                        <option>Erken Rezervasyon Turları</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxs-12 col-xs-12 mt alternate">
+                                                <div class="input-field">
+                                                    <label for="date-start">Başlangıç Tarihi</label>
+                                                    <input type="date" class="form-control" placeholder="gg/aa/yyyy" name="baslangic" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xxs-12 col-xs-12 mt alternate">
+                                                <div class="input-field">
+                                                    <label for="date-end">Bitiş Tarihi</label>
+                                                    <input type="date" class="form-control" placeholder="gg/aa/yyyy" name="bitis" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <input type="submit" class="btn btn-primary btn-block" value="Tur Ara">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </form>
+                            <div role="tabpanel" class="tab-pane" id="hotels">
+                                <form asp-action="Arama" asp-controller="Otel" method="get">
+                                    <div class="row">
+                                        <div class="col-xxs-12 col-xs-12 mt">
+                                            <div class="input-field">
+                                                <label for="from">Şehir</label>
+                                                <select type="text" class="form-control" id="from-place" placeholder="" name="sehir">
+                                                    <option hidden value="null">Seçiniz</option>
+                                                    <option>İstanbul</option>
+                                                    <option>Ankara</option>
+                                                    <option>Antalya</option>
+                                                    <option>Aydın</option>
+                                                    <option>İzmir</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxs-12 col-xs-6 mt alternate">
+                                            <div class="input-field">
+                                                <label for="date-start">Giriş Tarihi</label>
+                                                <input type="date" class="form-control" placeholder="gg/aa/yyyy" name="baslangic" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xxs-12 col-xs-6 mt alternate">
+                                            <div class="input-field">
+                                                <label for="date-end">Çıkış Tarihi</label>
+                                                <input type="date" class="form-control" placeholder="gg/aa/yyyy" name="bitis" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <input type="submit" class="btn btn-primary btn-block" value="Otel Ara">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        @*</form>*@
+                    </div>
+                </div>
+                <div class="desc2 animate-box">
+                    <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
+                        <p>@*HandCrafted by*@ <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">@*FreeHTML5.co*@</a></p>
+                        <h2>@*Exclusive Limited Time Offer*@</h2>
+                        <h3>@*Fly to Hong Kong via Los Angeles, USA*@</h3>
+                        <span class="price">@*$599*@</span>
+                        <!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-md-3" id="fh5co-tours" class="fh5co-section-gray">
+        <div class="">
+            <div class="card" style="margin-left: 25px; border-width: 5px;border-style: ridge;">
+                                  
+                        <h5 class="card-header" style="font-size:medium; margin-left: 35px; margin-top:20px;">Filtrele</h5>
+                        <div class="card-body" style="margin-left: 35px;">
+                            <h5 class="card-title">Tur Çeşitleri</h5>
+                            <p class="card-text">
+                            <p><a asp-route-anagrup="Yurt İçi Turları" asp-action="Filter" asp-controller="Home" />Yurt İçi Turları</a></p>
+                            <p><a asp-route-anagrup="Yurt Dışı Turları" asp-action="Filter" asp-controller="Home" />Yurt Dışı Turları</a></p>
+                            <p><a asp-route-anagrup="Erken Rezervasyon Turları" asp-action="Filter" asp-controller="Home" />Erken Rezervasyon Turları</a></p>
+
+                            <h5 class="card-title">Yurt İçi Turlar</h5>
+                            <p class="card-text">
+                            <p><a asp-route-altkategori="Ege-Akdeniz Turları" asp-action="Filter" asp-controller="Home" />Ege-Akdeniz Turları</a></p>
+                            <p><a asp-route-altkategori="Karadeniz Turları" asp-action="Filter" asp-controller="Home" />Karadeniz Turları</a></p>
+                            <p><a asp-route-altkategori="İç Anadolu Turları" asp-action="Filter" asp-controller="Home" />İç Anadolu Turları</a></p>
+                            <p><a asp-route-altkategori="Gap Turları" asp-action="Filter" asp-controller="Home" />Gap Turları</a></p>
+                            <p><a asp-route-altkategori="Kapodakya Turları" asp-action="Filter" asp-controller="Home" />Kapodakya Turları</a></p>
+                            <p><a asp-route-altkategori="Butik Turları" asp-action="Filter" asp-controller="Home" />Butik Turları</a></p>
+                            <p><a asp-route-altkategori="Hafta Sonu Turları" asp-action="Filter" asp-controller="Home" />Hafta Sonu Turları</a></p>
+
+                            <h5 class="card-title">Yurt Dışı Turlar</h5>
+                            <p class="card-text">
+                            <p><a asp-route-altkategori="Avrupa Turları" asp-action="Filter" asp-controller="Home" />Avrupa Turları</a></p>
+                            <p><a asp-route-altkategori="İtalya Turları" asp-action="Filter" asp-controller="Home" />İtalya Turları</a></p>
+                            <p><a asp-route-altkategori="Yunanistan Turları" asp-action="Filter" asp-controller="Home" />Yunanistan Turları</a></p>
+                            <p><a asp-route-altkategori="Balkan Turları" asp-action="Filter" asp-controller="Home" />Balkan Turları</a></p>
+                            <p><a asp-route-altkategori="Uzakdoğu Turları" asp-action="Filter" asp-controller="Home" />Uzakdoğu Turları</a></p>
+
+                            <h5 class="card-title">Ulaşım Türü</h5>
+                            <p class="card-text">
+                            <p><a asp-route-ulasimturu="Lüks Otobüsler ile" asp-action="Filter" asp-controller="Home" />Lüks Otobüsler ile</a></p>
+                            <p><a asp-route-ulasimturu="Tren İle" asp-action="Filter" asp-controller="Home" />Tren ile</a></p>
+                            <p><a asp-route-ulasimturu="Türk Hava Yolları ile" asp-action="Filter" asp-controller="Home" />Türk Hava Yolları ile</a></p>
+                            @*<h5 class="card-title">Fiyat Aralığı</h5>
+        <p class="card-text">
+        <p><input type="text" value="" style="width:50px;" /> - <input type="text" value="" style="width:50px;" /></p>
+
+        <button type="submit" class="btn-sm">Listele</button>*@
+                        </div>              
+                </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div id="fh5co-tours" class="fh5co-section-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-2 text-center heading-section animate-box">
+                        <h3>POPÜLER TURLAR</h3>
+                        @*<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>*@
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in Model.TurListViewModel)
+                    {
+
+                        <div class="col-md-5 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <div>
+                                <img src="~/img/@item.Picture" alt="@item.Picture" class="img-responsive" style="width:457.5px; height:320px;">
+                                <div class="desc">
+                                    <span></span>
+                                    <h3>@item.TurBasligi</h3>
+                                    @*<span>3 nights + Flight 5*Hotel</span>*@
+                                    <span class="price">@item.Fiyat @item.ParaBirimi</span>
+                                    <a class="btn btn-primary btn-outline" asp-action="TurBilgileri" asp-controller="Home" asp-route-id="@item.TurId">Detaylar <i class="icon-arrow-right22"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="fh5co-blog-section" class="fh5co-section-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                <h3>TURLAR</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row row-bottom-padded-md">
+            @foreach (var item in Model.TurlarListViewModel)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="fh5co-blog animate-box">
+                        <a asp-action="Index" asp-controller="TurBilgileri" asp-route-id="@item.TurId"><img class="img-responsive" src="~/img/@item.Picture" alt="" style="width:360px; height:320px;"></a>
+                        <div class="blog-text">
+                            <div class="prod-title">
+                                <h3><a asp-action="Index" asp-controller="TurBilgileri" asp-route-id="@item.TurId">@item.TurBasligi</a></h3>
+                                <span class="posted_by">@item.BaslangicTarihi.ToString("dd/MM/yyyy")-@item.BitisTarihi.ToString("dd/MM/yyyy")</span>
+                                <span class="comment"><a asp-action="Favori" asp-controller="Home" asp-route-userId="@ViewBag.KullaniciId" asp-route-turId="@item.TurId" data-bs-toggle="tooltip" data-bs-placement="top" title="Favorilerime Ekle"><i style="text-decoration:none;" class="icon-heart"></i></a></span>
+                                @*<p>@Html.Raw(item.GidilecekYerler)</p>*@
+                                <p><a asp-action="TurBilgileri" asp-controller="Home" asp-route-id="@item.TurId">Daha Fazla...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="clearfix visible-sm-block"></div>
+            <div class="clearfix visible-md-block"></div>
+        </div>
+    </div>
+</div>
+</div>

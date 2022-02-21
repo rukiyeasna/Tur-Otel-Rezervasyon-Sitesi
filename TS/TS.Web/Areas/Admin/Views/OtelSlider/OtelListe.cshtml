@@ -1,0 +1,35 @@
+﻿@model List<OtelListeViewModel>
+@{
+    ViewData["Title"] = "OtelListe";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="text-align:center;">OTEL GÖRSEL</th>
+            <th>OTEL ID</th>
+            <th>OTEL AD</th>
+            <th>ŞEHİR</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="text-align:center;"><img src="~/img/@item.Picture" alt="@item.Picture" style="width:100px; height:100px;" /></td>
+                <td>@item.OtelId</td>
+                <td>@item.OtelAd</td>
+                <td>@item.Sehir</td>
+                <td style="text-align:center;">           
+                    <a class="btn btn-primary btn-sm" asp-route-id="@item.OtelId" asp-action="OtelSliderEkleme" asp-controller="OtelSlider">Ekle</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

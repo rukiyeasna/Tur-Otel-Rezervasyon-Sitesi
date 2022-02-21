@@ -1,0 +1,104 @@
+﻿@model List<OtelPuanViewModel>
+@{
+    ViewData["Title"] = "Yorumlarim";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+<style>
+    body {
+        background-color: #fffdd0;
+    }
+</style>
+
+
+<div class="row" style="background-color:#fffdd0; margin-bottom:150px;">
+    <div class="row" style="margin-top:30px;">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" id="fh5co-tours" class="fh5co-section-gray">
+            <div class="list-group" style="margin-left:20px;  font-size:medium;">
+                <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                    <div class="btn-group">
+                        <a asp-action="Mesajlarim" asp-controller="Iletisim" style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle " data-toggle="">Gönderilen Mesajlar</a>
+                    </div>
+                    <div class="btn-group">
+                        <a asp-action="MesajlarimGelen" asp-controller="Iletisim" style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle " data-toggle="">Gelen Mesajlar</a>
+                    </div>
+                    <div class="btn-group">
+                        <a asp-action="Yorumlarim" asp-controller="Iletisim" style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle active" data-toggle="">Yorum & Değerlendirme</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div style="margin-top:75px;" class="col-lg-11 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-description">
+                        </p>
+                        @if (ViewBag.Sayim == 0)
+                        {
+                            <div class="container">
+                                <h4 style="margin-top:50px;">Herhangi bir yorum&değerlendirmeniz bulunmamaktadır.</h4>
+                            </div>
+                        }
+                        else
+                        {
+
+
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            @*<th>Kategori</th>*@
+                                            <th>Otel</th>
+                                            <th>Fiyat Performans</th>
+                                            <th>Hizmet Kalitesi</th>
+                                            <th>Oda Konforu</th>
+                                            <th>Temizlik/Hijyen</th>
+                                            <th>Personel</th>
+                                            <th>Yiyecek/İçecek Kalitesi</th>
+                                            <th>Yorum</th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            @foreach (var item2 in ViewBag.Otel)
+                                            {
+                                                @if (item.OtelId == item2.OtelId)
+                                                {
+                                                    <td>@item2.OtelAd</td>
+                                                }
+
+                                            }
+
+                                            <td>@item.FiyatDeger</td>
+                                            <td>@item.HizmetDeger</td>
+                                            <td>@item.OdaDeger</td>
+                                            <td>@item.TemizDeger</td>
+                                            <td>@item.PersonelDeger</td>
+                                            <td>@item.YiyecekDeger</td>
+                                            <td>@item.Yorum</td>
+                                            <td><a asp-action="Guncelle" asp-controller="Iletisim" asp-route-id="@item.OtelPuanId" class="btn btn-warning btn-rounded btn-fw btn-sm">Değiştir</a></td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

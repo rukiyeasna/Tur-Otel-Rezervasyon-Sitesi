@@ -1,0 +1,38 @@
+﻿@model ImageViewModel
+@{
+    ViewData["Title"] = "SliderEkleme";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">GÖRSEL EKLE</h4>
+            <form class="form-sample" asp-action="SliderEkleme" asp-controller="Image" method="post" enctype="multipart/form-data">
+                <p class="card-description">
+                </p>
+                <input type="hidden" asp-for="@Model.Id" />
+                <input type="hidden" asp-for="@Model.TurId" />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Görsel</label>
+                            <span asp-validation-for="ResimDosyasi" class="text-danger"></span>
+                            <input asp-for="ResimDosyasi" class="form-control" />
+                            <span asp-validation-for="Picture" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <a asp-action="Index" asp-controller="Image" class="btn btn-warning btn-sm">Geri Dön</a>
+                <button type="submit" class="btn btn-primary btn-sm ">Kaydet</button>
+            </form>
+            <div class="container" style="margin-top:5px;">
+                @foreach (var item in ViewBag.Gorsel)
+                {
+                    <img src="~/img/@item.Picture" width="150px;" height="150px;" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

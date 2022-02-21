@@ -1,0 +1,96 @@
+﻿@model OtelGüncelleViewModel
+@{
+    ViewData["Title"] = "OtelSil";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">OTEL EKLE</h4>
+            <form class="form-sample" asp-action="OtelSilme" asp-controller="OtelBilgileri" enctype="multipart/form-data">
+
+                <p class="card-description">
+                </p>
+                <input type="hidden" asp-for="OtelId" name="id" />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputName1">Ana Grup</label>
+                            <select disabled class="form-control" asp-for="@Model.Anagrup">
+                                <option>Yurt İçi Oteller</option>
+                                <option>Yurt Dışı Oteller</option>
+                                <option>Kıbrıs Otelleri</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Şehir</label>
+                            <div class="col-sm-9">
+                                <input disabled type="text" class="form-control" asp-for="@Model.Sehir" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Otel Adı</label>
+                            <div class="col-sm-9">
+                                <input disabled type="text" class="form-control" asp-for="@Model.OtelAd" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Otel Özellikleri</label>
+                            <div class="col-sm-9">
+                                <textarea disabled id="editorid4" asp-for="OtelOzellik" class="form-control"></textarea>
+                                <span asp-validation-for="OtelOzellik" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Vize</label>
+                            <div class="col-sm-9">
+                                <input disabled type="text" class="form-control" asp-for="@Model.Vize" />
+                                <span asp-validation-for="Vize" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="hidden" name="Picture" value="@Model.Picture" />
+                            <img src="~/img/@Model.Picture" width="300" height="200" />
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-danger btn-medium ">Sil</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("editorid");
+        CKEDITOR.replace("editorid1");
+        CKEDITOR.replace("editorid2");
+        CKEDITOR.replace("editorid3");
+        CKEDITOR.replace("editorid4");
+        CKEDITOR.replace("editorid5");
+    </script>
+}

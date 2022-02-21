@@ -1,0 +1,138 @@
+﻿@model List<MesajListeViewModel>
+@{
+    ViewData["Title"] = "Mesajlarim";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Gönderen</th>
+                <th>Kategori</th>
+                <th>Konu</th>
+                <th>İçerik</th>
+                <th>Gönderilme Tarihi</th>
+                <th>Telefon</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Gonderici</td>
+                    <td>@item.Kategori</td>
+                    <td>@item.Konu</td>
+                    <td>@item.Username</td>
+                    <td>@item.Email</td>
+                    <td>@item.Telefon</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>*@
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Gelen Mesajlar</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Gönderen</th>
+                            <th>Kategori</th>
+                            <th>Konu</th>
+                            <th>İçerik</th>
+                            <th>Gönderilme Tarihi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Gonderici</td>
+                                @if (@item.Kategori == "Şikayet")
+                                {
+                                    <td><label class="badge badge-danger">@item.Kategori</label></td>
+                                }
+
+                                @if (@item.Kategori == "Talep")
+                                {
+                                    <td><label class="badge badge-success">@item.Kategori</label></td>
+                                }
+
+                                @if (@item.Kategori == "Bilgi")
+                                {
+                                    <td><label class="badge badge-warning">@item.Kategori</label></td>
+                                }
+
+                                @if (@item.Kategori == "Teşekkür")
+                                {
+                                    <td><label class="badge badge-info">@item.Kategori</label></td>
+                                }
+
+                                <td>@item.Konu</td>
+                                <td>@item.Icerik</td>
+                                <td>@item.Tarih</td>
+                                <td>
+                                    <a asp-action="MesajGonder" asp-controller="Profil" asp-route-gonderici="@item.Gonderici" class="btn btn-outline-success btn-icon-text">
+                                        <i class="ti-file btn-icon-prepend"></i>
+                                        Cevap Yaz
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Gönderilen Mesajlar</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Alıcı</th>
+                            @*<th>Kategori</th>
+                                <th>Konu</th>*@
+                            <th>İçerik</th>
+                            <th>Gönderilme Tarihi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.Gonderilen)
+                        {
+                            <tr>
+                                <td>@item.Alici</td>
+                                <td>@item.Icerik</td>
+                                <td>@item.Tarih</td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model List<RezerViewModel>
+@{
+    ViewData["Title"] = "TurRezervasyonListe";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">AKTİF TUR REZERVASYONLARI</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Görsel</th>
+                            <th>Ad-Soyad</th>
+                            <th>Telefon</th>
+                            <th>Kişi Sayısı</th>
+                            <th>Tur Alt Kategori</th>
+                            <th>Tur Başlığı</th>
+                            <th>Başlangıç Tarihi</th>
+                            <th>Bitiş Tarihi</th>
+                            <th>Ödenen Tutar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td @*style="text-align:center;"*@><img src="~/img/@item.Picture" alt="@item.Picture" /></td>
+                            <td>@item.Yad @item.Ysoyad</td>
+                            <td>@item.Telefon</td>
+                            <td>@item.YetiskinSayisi Yetişkin @item.CocukSayisi Çocuk</td>
+                            <td>@item.TurAltKategori</td>
+                            <td>@item.TurBasligi</td>
+                            <td>@item.BaslangicTarihi.ToString("dd/MM/yyyy")</td>
+                            <td>@item.BitisTarihi.ToString("dd/MM/yyyy")</td>
+                            <td>@item.OdenenTutar TL</td>
+                        </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

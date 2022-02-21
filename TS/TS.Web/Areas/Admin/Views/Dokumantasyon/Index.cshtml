@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="row" style="color:black;">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <a style="text-decoration:none;" asp-action="KullaniciBilgileri" asp-controller="Dokumantasyon"><h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Kullanıcı Bilgileri </h3></a>
+                    <i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <a style="text-decoration:none;" asp-action="TurRezervasyonlar" asp-controller="Dokumantasyon"> <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Rezervasyonlar</h3></a>
+                    <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <a style="text-decoration:none;" asp-action="IptalTurRezervasyonlar" asp-controller="Dokumantasyon"> <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">İptal Rezervasyonlar</h3></a>
+                    <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <a style="text-decoration:none;" asp-action="GecmisTurRezervasyonlar" asp-controller="Dokumantasyon"> <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Geçmiş Rezervasyonlar</h3></a>
+                    <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="color:black;">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <a style="text-decoration:none;" asp-action="OtelRezervasyonListe" asp-controller="Dokumantasyon"> <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Otel Rezervasyonlar</h3></a>
+                    <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <a style="text-decoration:none;" asp-action="IptalOtelRezervasyonListe" asp-controller="Dokumantasyon"> <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Otel İptal Rezervasyonlar</h3></a>
+                    <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <a style="text-decoration:none;" asp-action="GecmisOtelRezervasyonListe" asp-controller="Dokumantasyon"> <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Otel Geçmiş Rezervasyonlar</h3></a>
+                    <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

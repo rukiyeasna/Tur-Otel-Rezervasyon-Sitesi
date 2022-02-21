@@ -1,0 +1,31 @@
+﻿@model List<TurListViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        @*<div class="form-group row">
+            <div class="col-sm-9">
+                <a type="button" class="btn btn-success" asp-action="TurEkle" asp-controller="Home">
+                    Tur Ekle
+                </a>
+            </div>
+        </div>*@
+    </div>
+</div>
+@foreach (var item in Model)
+{
+    <div class="card mr-3 mt-2" style="width: 18rem;">
+        <img class="card-img-top" src="~/img/@item.Picture" alt="Card image cap" width="150px;" height="200px;">
+        <div class="card-body">
+            <h5 class="card-title">@item.TurBasligi</h5>
+            <p class="card-text">@item.BaslangicTarihi.ToString("M")-@item.BitisTarihi.ToString("M")</p>      
+            @*<a class="btn btn-danger" asp-action="TurKaldir" asp-controller="Home" asp-route-id="@item.TurId">Kaldır</a>*@
+            <a asp-route-TurId="@item.TurId" asp-action="SliderEkleme" asp-controller="Image" class="btn btn-primary">Ekle</a>
+
+        </div>
+    </div>
+
+}

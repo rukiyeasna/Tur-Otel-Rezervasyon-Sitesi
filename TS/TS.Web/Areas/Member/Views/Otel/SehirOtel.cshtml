@@ -1,0 +1,79 @@
+﻿@model List<OtelListeViewModel>
+@{
+    ViewData["Title"] = "SehirOtel";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3" id="fh5co-tours" class="fh5co-section-gray">
+        <div class="">
+            <div class="card" style="margin-left: 25px; border-width: 5px;border-style: ridge;">
+
+                <h5 class="card-header" style="font-size:medium; margin-left: 35px; margin-top:20px;">Filtrele</h5>
+                <div class="card-body" style="margin-left: 35px;">
+                    <h5 class="card-title">Otel Kategori</h5>
+                    <p class="card-text">
+                    <p><a asp-route-anagrup="Yurt İçi Oteller" asp-action="Filter" asp-controller="Otel" />Yurt İçi Oteller</a></p>
+                    <p><a asp-route-anagrup="Yurt Dışı Oteller" asp-action="Filter" asp-controller="Otel" />Yurt Dışı Oteller</a></p>
+                    <p><a asp-route-anagrup="Kıbrıs Otelleri" asp-action="Filter" asp-controller="Otel" />Kıbrıs Otelleri</a></p>
+
+                    <h5 class="card-title">Pansiyon Tipi</h5>
+                    <p class="card-text">
+                    <p><a asp-route-bilgi="Sadece Oda" asp-action="Filter" asp-controller="Otel" />Sadece Oda</a></p>
+                    <p><a asp-route-bilgi="Oda Kahvaltı" asp-action="Filter" asp-controller="Otel" />Oda Kahvaltı</a></p>
+                    <p><a asp-route-bilgi="Herşey Dahil" asp-action="Filter" asp-controller="Otel" />Herşey Dahil</a></p>
+
+                    <h5 class="card-title">Tesis Teması</h5>
+                    <p class="card-text">
+                    <p><a asp-route-ozellik="Aquapark" asp-action="Filter" asp-controller="Otel" />Aquapark</a></p>
+                    <p><a asp-route-ozellik="Denize Sıfır" asp-action="Filter" asp-controller="Otel" />Denize Sıfır</a></p>
+                    <p><a asp-route-ozellik="Su Kaydırağı" asp-action="Filter" asp-controller="Otel" />Su Kaydırağı</a></p>
+
+                    @*<h5 class="card-title">Misafir Puanı</h5>
+                    <p class="card-text">
+                    <p><a asp-route-sayi="9,5" asp-action="Filter" asp-controller="Otel" />9,5 ve üstü</a></p>
+                    <p><a asp-route-sayi="Denize Sıfır" asp-action="Filter" asp-controller="Otel" />8 ve üstü</a></p>
+                    <p><a asp-route-sayi="Su Kaydırağı" asp-action="Filter" asp-controller="Otel" />7 ve üstü</a></p>*@
+                    @*<h5 class="card-title">Fiyat Aralığı</h5>
+        <p class="card-text">
+        <p><input type="text" value="" style="width:50px;" /> - <input type="text" value="" style="width:50px;" /></p>
+
+        <button type="submit" class="btn-sm">Listele</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+
+
+        <div id="fh5co-blog-section" class="fh5co-section-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                        <h3>@ViewBag.OtelSehri Otelleri</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row row-bottom-padded-md">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="fh5co-blog animate-box">
+                                <a @*asp-action="Index" asp-controller="TurBilgileri" asp-route-id="@item.OtelId"*@><img class="img-responsive" src="~/img/@item.Picture" alt="" style="width:360px; height:320px;"></a>
+                                <div class="blog-text">
+                                    <div class="prod-title">
+                                        <h3><a @*asp-action="Index" asp-controller="TurBilgileri" asp-route-id="@item.TurId"*@>@item.OtelAd</a></h3>
+                                        <span class="posted_by">@ViewBag.OtelSehri</span>
+                                        <span class="comment"><a asp-action="Favori" asp-controller="Otel" asp-route-userId="@ViewBag.KullaniciId" asp-route-otelId="@item.OtelId" data-bs-toggle="tooltip" data-bs-placement="top" title="Favorilerime Ekle"><i class="icon-heart"></i></a></span>
+                                        <p><a asp-action="OtelBilgileri" asp-controller="Otel" asp-route-id="@item.OtelId" asp-route-otelad="@item.OtelAd" asp-route-sehir="@ViewBag.OtelSehri">DETAYLAR...</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+﻿@model OtelOdaViewModel
+@{
+    ViewData["Title"] = "OdaEkle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (ViewBag.deger == 0)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.metin
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">OTEL ODA EKLE</h4>
+            <form class="form-sample" asp-action="OdaEkle" asp-controller="OtelBilgileri" enctype="multipart/form-data">
+
+                <p class="card-description">
+                </p>
+                <input type="hidden" asp-for="OtelId" value="@ViewBag.OtelId" />
+                <input type="hidden" asp-for="Id" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Oda Tipi</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.OdaTipi" />
+                                <span asp-validation-for="OdaTipi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">İçerik Bilgisi</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.IcerikBilgisi" />
+                                <span asp-validation-for="IcerikBilgisi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Giriş Tarihi</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" asp-for="@Model.GirisTarihi" value="@Model.GirisTarihi" />
+                                <span asp-validation-for="GirisTarihi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Çıkış Tarihi</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" asp-for="@Model.CikisTarihi" value="@Model.CikisTarihi" />
+                                <span asp-validation-for="CikisTarihi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Bilgi</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Bilgi" />
+                                <span asp-validation-for="Bilgi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Fiyat</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Fiyat" />
+                                <span asp-validation-for="Fiyat" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Otel Oda Özellikleri</label>
+                            <div class="col-sm-9">
+                                <textarea id="editorid4" asp-for="OtelOdaOzellik" class="form-control"></textarea>
+                                <span asp-validation-for="OtelOdaOzellik" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Vize</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.ParaBirimi" />
+                                <span asp-validation-for="ParaBirimi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Görsel</label>
+                            <input asp-for="ResimDosyasi" class="form-control" />
+                            <span asp-validation-for="ResimDosyasi" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm ">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("editorid");
+        CKEDITOR.replace("editorid1");
+        CKEDITOR.replace("editorid2");
+        CKEDITOR.replace("editorid3");
+        CKEDITOR.replace("editorid4");
+        CKEDITOR.replace("editorid5");
+    </script>
+}

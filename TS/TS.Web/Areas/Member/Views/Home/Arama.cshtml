@@ -1,0 +1,97 @@
+﻿@model List<TurListViewModel>
+@{
+    ViewData["Title"] = "Arama";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3" id="fh5co-tours" class="fh5co-section-gray">
+        <div class="">
+            <div class="card" style="margin-left: 25px; border-width: 5px;border-style: ridge;">
+
+                <h5 class="card-header" style="font-size:medium; margin-left: 35px; margin-top:20px;">Filtrele</h5>
+                <div class="card-body" style="margin-left: 35px;">
+                    <h5 class="card-title">Tur Çeşitleri</h5>
+                    <p class="card-text">
+                    <p><a asp-route-anagrup="Yurt İçi Turları" asp-action="Filter" asp-controller="Home" />Yurt İçi Turları</a></p>
+                    <p><a asp-route-anagrup="Yurt Dışı Turları" asp-action="Filter" asp-controller="Home" />Yurt Dışı Turları</a></p>
+                    <p><a asp-route-anagrup="Erken Rezervasyon Turları" asp-action="Filter" asp-controller="Home" />Erken Rezervasyon Turları</a></p>
+
+                    <h5 class="card-title">Yurt İçi Turlar</h5>
+                    <p class="card-text">
+                    <p><a asp-route-altkategori="Ege-Akdeniz Turları" asp-action="Filter" asp-controller="Home" />Ege-Akdeniz Turları</a></p>
+                    <p><a asp-route-altkategori="Karadeniz Turları" asp-action="Filter" asp-controller="Home" />Karadeniz Turları</a></p>
+                    <p><a asp-route-altkategori="İç Anadolu Turları" asp-action="Filter" asp-controller="Home" />İç Anadolu Turları</a></p>
+                    <p><a asp-route-altkategori="Gap Turları" asp-action="Filter" asp-controller="Home" />Gap Turları</a></p>
+                    <p><a asp-route-altkategori="Kapodakya Turları" asp-action="Filter" asp-controller="Home" />Kapodakya Turları</a></p>
+                    <p><a asp-route-altkategori="Butik Turları" asp-action="Filter" asp-controller="Home" />Butik Turları</a></p>
+                    <p><a asp-route-altkategori="Hafta Sonu Turları" asp-action="Filter" asp-controller="Home" />Hafta Sonu Turları</a></p>
+
+                    <h5 class="card-title">Yurt Dışı Turlar</h5>
+                    <p class="card-text">
+                    <p><a asp-route-altkategori="Avrupa Turları" asp-action="Filter" asp-controller="Home" />Avrupa Turları</a></p>
+                    <p><a asp-route-altkategori="İtalya Turları" asp-action="Filter" asp-controller="Home" />İtalya Turları</a></p>
+                    <p><a asp-route-altkategori="Yunanistan Turları" asp-action="Filter" asp-controller="Home" />Yunanistan Turları</a></p>
+                    <p><a asp-route-altkategori="Balkan Turları" asp-action="Filter" asp-controller="Home" />Balkan Turları</a></p>
+                    <p><a asp-route-altkategori="Uzakdoğu Turları" asp-action="Filter" asp-controller="Home" />Uzakdoğu Turları</a></p>
+
+                    <h5 class="card-title">Ulaşım Türü</h5>
+                    <p class="card-text">
+                    <p><a asp-route-ulasimturu="Lüks Otobüsler ile" asp-action="Filter" asp-controller="Home" />Lüks Otobüsler ile</a></p>
+                    <p><a asp-route-ulasimturu="Tren İle" asp-action="Filter" asp-controller="Home" />Tren ile</a></p>
+                    <p><a asp-route-ulasimturu="Türk Hava Yolları ile" asp-action="Filter" asp-controller="Home" />Türk Hava Yolları ile</a></p>
+                    @*<h5 class="card-title">Fiyat Aralığı</h5>
+        <p class="card-text">
+        <p><input type="text" value="" style="width:50px;" /> - <input type="text" value="" style="width:50px;" /></p>
+
+        <button type="submit" class="btn-sm">Listele</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+
+
+
+        <div id="fh5co-blog-section" class="fh5co-section-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                        <h3>
+                            @if (ViewBag.kategori != "null")
+                            {@ViewBag.kategori} ( @ViewBag.baslangic.ToString("dd/MM/yyyy") - @ViewBag.bitis.ToString("dd/MM/yyyy"))
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            @if (ViewBag.sayi == 0)
+            {<div class="container">
+                    <h4>Aradığınız kriterlere uygun tur bulunmamaktadır.</h4>
+                </div>
+            }
+
+            <div class="container">
+                <div class="row row-bottom-padded-md">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="fh5co-blog animate-box">
+                                <a asp-action="Index" asp-controller="TurBilgileri" asp-route-id="@item.TurId"><img class="img-responsive" src="~/img/@item.Picture" alt="" style="width:360px; height:320px;"></a>
+                                <div class="blog-text">
+                                    <div class="prod-title">
+                                        <h3><a asp-action="Index" asp-controller="TurBilgileri" asp-route-id="@item.TurId">@item.TurBasligi</a></h3>
+                                        <span class="posted_by">@item.BaslangicTarihi.ToString("dd/MM/yyyy")-@item.BitisTarihi.ToString("dd/MM/yyyy")</span>
+                                        <span class="comment"><a asp-action="SignIn" asp-controller="Account" data-bs-toggle="tooltip" data-bs-placement="top" title="Favorilerime Ekle"><i class="icon-heart"></i></a></span>
+                                        <p><a asp-action="TurBilgileri" asp-controller="Home" asp-route-id="@item.TurId">Daha Fazla...</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

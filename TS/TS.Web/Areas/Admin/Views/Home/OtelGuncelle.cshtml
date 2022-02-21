@@ -1,0 +1,95 @@
+﻿@model OtelListViewModel
+@{
+    ViewData["Title"] = "OtelGuncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">OTEL BİLGİSİ EKLE</h4>
+            <form class="form-sample" asp-action="OtelGuncelle" asp-controller="Home" method="post">
+                <p class="card-description">
+                </p>
+                <input type="hidden" asp-for="OtelBilgiId" />
+                <input type="hidden" asp-for="TurId" />
+
+                @*<div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Tur Başlığı</label>
+                            <span asp-validation-for="TurId" class="text-danger"></span>
+                            <select class="form-control" asp-for="TurId" asp-items="ViewBag.Tur">
+                                <option hidden value="-1">Seçiniz</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>*@
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Otel Tanımı</label>
+                            <input type="text" class="form-control" asp-for="@Model.FiyatTanimi" />
+                            <span asp-validation-for="FiyatTanimi" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Çift Kişilik Oda Fiyatı</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.CiftKisilikOda" />
+                                <span asp-validation-for="CiftKisilikOda" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">İlave Yatak Fiyatı</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.IlaveYatak" />
+                                <span asp-validation-for="IlaveYatak" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Tek Kişilik Oda Fiyatı</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.TekKisilikOda" />
+                                <span asp-validation-for="TekKisilikOda" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Çocuk Fiyatı</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Cocuk_3_6_Yas" />
+                                <span asp-validation-for="Cocuk_3_6_Yas" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Çocuk 7-12 Yaş Fiyatı</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Cocuk_7_12_Yas" />
+                            </div>
+                        </div>
+                    </div>                  
+                </div>
+                   <button type="submit" class="btn btn-primary btn-sm ">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+

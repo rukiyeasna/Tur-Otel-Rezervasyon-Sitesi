@@ -1,0 +1,49 @@
+﻿@model OtelOdaOzellikViewModel
+@{
+    ViewData["Title"] = "OtelOdaOzellikEkle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">ÖZELLİK EKLE</h4>
+            <form class="form-sample" asp-action="OtelOdaOzellikEkle" asp-controller="OtelBilgileri" method="post">
+                <p class="card-description">
+                </p>
+                <input type="hidden" asp-for="@Model.Id" />
+                <input type="hidden" asp-for="@Model.OtelOdaId" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>ÖZELLİK</label>
+                            <input asp-for="Ozellik" class="form-control" />
+                            <span asp-validation-for="Ozellik" class="text-danger"></span>
+                        </div>
+
+                        <a asp-action="OtelOzellik" asp-controller="OtelBilgileri" class="btn btn-warning btn-sm">Geri Dön</a>
+                        <button type="submit" class="btn btn-primary btn-sm ">Kaydet</button>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        @foreach (var item in ViewBag.Gorsel)
+                        {
+                            <ul>
+                                <li>
+                                    @item.Ozellik
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+                
+            </form>
+
+
+
+
+        </div>
+    </div>
+</div>
+

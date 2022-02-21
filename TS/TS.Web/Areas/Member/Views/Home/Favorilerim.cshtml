@@ -1,0 +1,73 @@
+﻿@model List<OtelFavori>
+@{
+    ViewData["Title"] = "Favorilerim";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div id="fh5co-blog-section" class="fh5co-section-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                <h3>FAVORİ TURLAR</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row row-bottom-padded-md">
+            @foreach (var item in ViewBag.FavoriTur)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="fh5co-blog animate-box">
+                        <a asp-action="Index" asp-controller="TurBilgileri" asp-route-id="@item.TurId"><img class="img-responsive" src="~/img/@item.TurBilgileris.Picture" alt="" style="width:360px; height:320px;"></a>
+                        <div class="blog-text">
+                            <div class="prod-title">
+                                <h3><a asp-action="Index" asp-controller="TurBilgileri" asp-route-id="@item.TurId">@item.TurBilgileris.TurBasligi</a></h3>
+                                <span class="posted_by">@item.TurBilgileris.BaslangicTarihi.ToString("dd/MM/yyyy")-@item.TurBilgileris.BitisTarihi.ToString("dd/MM/yyyy")</span>
+                                <span class="comment"><a asp-action="FavoriKaldır" asp-controller="Home" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Favorilerimden Kaldır"><i class="icon-heart"></i></a></span>
+                                <p><a asp-action="TurBilgileri" asp-controller="Home" asp-route-id="@item.TurId">Daha Fazla...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="clearfix visible-sm-block"></div>
+            <div class="clearfix visible-md-block"></div>
+        </div>
+    </div>
+</div>
+
+
+<div id="fh5co-blog-section" class="fh5co-section-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                <h3>FAVORİ OTELLER</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row row-bottom-padded-md">
+            @foreach (var item in Model)
+            {
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="fh5co-blog animate-box">
+                    <a><img class="img-responsive" src="~/img/@item.Otels.Picture" alt="" style="width:360px; height:320px;"></a>
+                    <div class="blog-text">
+                        <div class="prod-title">
+                            <h3><a>@item.Otels.OtelAd</a></h3>
+                            <span class="posted_by">@item.Otels.Sehir</span>
+                            <span class="comment"><a asp-action="FavoriKaldır" asp-controller="Otel" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Favorilerimden Kaldır"><i class="icon-heart"></i></a></span>
+                            <p><a asp-action="OtelBilgileri" asp-controller="Otel" asp-route-id="@item.OtelId" asp-route-otelad="@item.Otels.OtelAd">DETAYLAR...</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+            <div class="clearfix visible-sm-block"></div>
+            <div class="clearfix visible-md-block"></div>
+        </div>
+    </div>
+</div>
+

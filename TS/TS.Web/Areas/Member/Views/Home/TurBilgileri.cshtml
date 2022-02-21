@@ -1,0 +1,279 @@
+﻿@model TurListViewModel
+@{
+    ViewData["Title"] = "TurBilgileri";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3" style="margin-top:30px; margin-left:20px;">
+        <div class="card">
+            <h5 class="card-header" style="font-size:medium;">Ziyaret Edilecek Yerler</h5>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                    @Html.Raw(@Model.GidilecekYerler)
+                <p>Ulaşım: @Model.Ulasim</p>
+                @if (Model.Vize == "Zorunlu")
+                {
+                    <p>Vize: @Model.Vize <a data-toggle="modal" data-target="#form2">(Vize bilgileri için tıklayınız.)</a></p>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8" style="margin-top:30px;">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 style="color:black;">@Model.TurBasligi.ToUpper() <a asp-action="Favori" asp-controller="Home" asp-route-userId="@ViewBag.KullaniciId" asp-route-turId="@Model.TurId" data-bs-toggle="tooltip" data-bs-placement="top" title="Favorilerime Ekle"><i class="icon-heart" style="text-decoration:none; color:black;"></i></a> </h3>
+                <p>(@Model.BaslangicTarihi.ToString("M")-@Model.BitisTarihi.ToString("M") @Model.BitisTarihi.Year)</p>
+            </div>
+        </div>
+
+        @*  Slider başlangıcı *@
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                @for (int j = 0; j < ViewBag.sayi; j++)
+                {
+                    <li data-target="#myCarousel" data-slide-to="@j"></li>
+                }
+            </ol>
+            <div class="carousel-inner">
+                @{int i = 0;}
+                @foreach (var item in ViewBag.Image)
+                {
+                    i++;
+                    var active = i == 1 ? "active" : "";
+                    <div class="item @active">
+                        <img src="~/img/@item.Picture" alt="@item.Picture" style="width:1050px; height:500px;" class="d-block w-100">
+                    </div>
+                }
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        @*  Slider bitişi *@
+
+        <div class="table-responsive-xl">
+            <table class="table" style="margin-top:30px;">
+                <thead class="table-dark" style="font-size:medium;">
+                    <tr>
+                        <th>Otel Tanımı</th>
+                        <th>Çift Kişilik Odada Kişibaşı</th>
+                        <th>İlave Yatak</th>
+                        <th>Tek Kişilik Oda</th>
+                        <th>Çocuk</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Otel)
+                    {
+                        <tr style="font-size:small;">
+                            <td>@item.FiyatTanimi</td>
+                            <td>@item.CiftKisilikOda.ToString("N") TL </td>
+                            <td>@item.IlaveYatak.ToString("N") TL</td>
+                            <td>@item.TekKisilikOda.ToString("N") TL</td>
+                            <td>@item.Cocuk_3_6_Yas.ToString("N") TL</td>
+                        </tr>
+                    }
+                    <tr style="text-align:right;">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#form">Rezervasyon Yap</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card" style="margin-top:30px;">
+            <h5 class="card-header" style="font-size:medium;">Fiyata Dahil Hizmetler</h5>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                    @Html.Raw(@Model.FiyataDahilHizmetler)
+                </p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:30px;">
+            <h5 class="card-header" style="font-size:medium;">Fiyata Dahil Olmayan Hizmetler</h5>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                    @Html.Raw(@Model.FiyataDahilOlmayanHizmetler)
+
+                </p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:30px;">
+            <h5 class="card-header" style="font-size:medium;">Tur Programı</h5>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                    @Html.Raw(@Model.TurProgrami)
+                </p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:30px;">
+            <h5 class="card-header" style="font-size:medium;">Tur Kalkış Noktaları</h5>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                    @Html.Raw(@Model.TurKalkisNoktalari)
+                </p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:30px;">
+            <h5 class="card-header" style="font-size:medium;">Açıklamalar</h5>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                    @Html.Raw(@Model.Aciklama)
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="exampleModalLabel">Otel Bilgileri</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="Index" asp-controller="Rezervasyon" method="get">
+                <div class="modal-body">
+                    @*<input type="hidden" asp-for="@Model.Id" />*@
+                    <input type="hidden" asp-for="@Model.TurId" name="TurId" />
+                    @*<input type="hidden" asp-for="" name="OtelId" />*@
+
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group row">
+                                <label for="from">Yetişkin Sayısı</label>
+                                <select type="text" class="form-control" id="from-place" name="yetiskin">
+                                    <option hidden value="null">Seçiniz</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group row">
+                                <label for="from">Çocuk Sayısı</label>
+                                <select type="text" class="form-control" id="from-place" name="cocuk">
+                                    <option hidden value="null">Seçiniz</option>
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label for="from">Otel Seçimi</label>
+                                <select class="form-control" asp-items="ViewBag.Tur" name="id">
+                                    <option hidden value="-1">Seçiniz</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    <button id="btnSil" type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="form2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="exampleModalLabel">VİZE BİLGİLERİ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    <li> BORDO(normal) Pasaportlardan vize istenmektedir.</li>
+                    <li>GRİ (Hizmet) ve SİYAH (Diplomatik;) pasaportlara vize uygulanmamaktadır.</li>
+                    <li>YEŞİL(Hususi) pasaportlardan 6 ay içerisinde 90 gün vize istenmemektedir.</li>
+                    <li>Tüm vize başvurularında yeni çekilmiş rötuşsuz ve arka fonu beyaz, biyometrik özelliklere sahip resimleri kabul etmektedir.</li>
+                    <li>Vize başvuru formlarını eksiksiz olarak okunaklı, büyük harflerle doldurulmalı ve pasaport sahibi tarafından imzalanmalıdır.</li>
+                    <li>Başvurularınızın Konsoloslukların randevu sistemi ile çalışması ve bayram, yılbaşı, sömestr, fuar, paskalya, dil okulu vb. gibi yoğun başvuruların olduğu günlere rastlaması durumunda konsoloslukların da çok yoğun olabileceğini dikkate alarak seyahat planınızı en az 30 gün önceden yapmanızı ve müracaatınızın sonuçlanması durumunda almış olduğunuz vizenin üzerindeki yazılı olan bilgilerin doğruluğunu mutlaka kontrol etmenizi önemle hatırlatırız.</li>
+                    <li>Turunuzun birden fazla ülkeyi kapsaması durumunda vize başvuru formunda bulunan 24.Maddedeki Giriş Sayısı seçeneklerinden Multiple (Çok) olan seçeneği seçmelisiniz.</li>
+                </ol>
+                @*SCHENGEN ÜLKERLERİ VİZE EVRAK LİSTESİ
+
+                ÜCRETLİ ÇALIŞANLAR İÇİN
+
+                1.Geçerli pasaportunuz ve varsa eski pasaportlarınız
+                2.İş yeri antetli kağıdınıza düzenlenmiş, şirketteki görevinizi ve seyahat sebebinizi belirten yetkili kişi tarafından imzalanmış ve kaşelenmiş dilekçe gerekmektedir.
+                3.Şahsınızın imzalayacağı seyahat sebebinizi belirten dilekçe,
+                4.İmza sirküleri fotokopisi,
+                5.Ticaret odası veya sanayi odasından alınmış faaliyet belgesi (6 aydan eski olmamalıdır.)
+                6.Vergi levhası fotokopisi (Son vergi yılı işlenmiş olmalıdır.)
+                7.Ticaret sicil gazetesi fotokopisi,
+                8.Sigortalı işe giriş bildirgesi fotokopisi veya noterden iş sözleşmesi,
+                9.Son 3 aylık maaş bordronuzun aslı,
+                10.SSK hizmet dökümü fotokopisi,
+                11.İçinde güncel bakiyenizin bulunduğu son 3 aylık hesap hareketinizi yansıtan banka hesap cüzdanı fotokopisi veya bankadan alınmış kaşeli ve imzalı hesap ekstresi aslı (ekstre ekinde imzayı atan banka yetkilisinin imza sirküleri fotokopisi de olmalıdır.)
+                12.Varsa tapu ve araç ruhsat fotokopileri,
+                13.2’şer adet arka fonu beyaz biyometrik fotoğraf (Yeni tarihli, 45 x 35 mm ebadında, yüzden çekilmiş bir vesikalık resmin ibrazı istenilmektedir.)
+                14.Evli çiftler için evlilik cüzdanı fotokopisi (Eşlerden birinin seyahat etmemesi durumunda dahi verilmelidir.)
+                15.Kimlik fotokopisi,
+                16.Otel ve uçak rezervasyonları,
+                17.En az 30.000 EUR teminatı olan seyahat ve sağlık sigortası aslı (tarafımızdan temin edilmektedir.)
+                18.Vize başvuru formunun 3. ve 4.sayfasında yer alan imza bölümleri tarafınızdan imzalanmalıdır.*@
+
+
+               
+            </div>
+        </div>
+    </div>
+</div>

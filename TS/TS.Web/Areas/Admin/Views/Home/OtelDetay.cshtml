@@ -1,0 +1,52 @@
+﻿@model List<OtelBilgileri>
+@{
+    ViewData["Title"] = "OtelDetay";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+@if (ViewBag.Sayi == 0)
+{
+    <div style="text-align:center;">
+        <p style="font-size:medium;">Herhangi bir otel kaydı bulunmamaktadır.</p>
+        <a asp-action="AddOtelBilgi" asp-controller="Home" class="btn btn-primary btn-sm">Otel Bilgisi Ekle</a>
+    </div>
+}
+else
+{
+
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Otel ID</th>
+                <th>Otel Adı</th>
+                <th>Çift Kişilik Oda Fiyatı</th>
+                <th>İlave Yatak Fiyatı</th>
+                <th>Çocuk Fiyatı</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OtelBilgiId</td>
+                    <td>@item.FiyatTanimi</td>
+                    <td>@item.CiftKisilikOda</td>
+                    <td>@item.IlaveYatak</td>
+                    <td>@item.Cocuk_3_6_Yas</td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" asp-action="OtelSil" asp-controller="Home" asp-route-id="@item.OtelBilgiId">Sil</a>
+                        <a class="btn btn-warning btn-sm" asp-action="OtelGuncelle" asp-controller="Home" asp-route-id="@item.OtelBilgiId">Güncelle</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+
+
+

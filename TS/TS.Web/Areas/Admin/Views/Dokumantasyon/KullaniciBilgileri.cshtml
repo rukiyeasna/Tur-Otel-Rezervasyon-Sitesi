@@ -1,0 +1,38 @@
+﻿@model List<KullaniciListeViewModel>
+@{
+    ViewData["Title"] = "KullaniciBilgileri";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<style>
+    body {
+        background-color:white;
+    }
+</style>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Kullanıcı ID</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Kullanıcı Adı</th>
+            <th>Email</th>
+            <th>Telefon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>@item.Username</td>
+            <td>@item.Email</td>
+            <td>@item.Telefon</td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+

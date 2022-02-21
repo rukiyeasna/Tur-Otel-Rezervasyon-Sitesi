@@ -1,0 +1,114 @@
+﻿@model RezervasyonViewModel
+@{
+    ViewData["Title"] = "RezervasyonİptalKaldir";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+
+<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<form asp-action="Kaldir" asp-controller="Rezervasyon">
+    @*<input type="hidden"  value="@ViewBag.Yetiskin" />
+    <input type="hidden"  value="@ViewBag.Cocuk" />
+    <input type="hidden" value="@ViewBag.otelid" />
+    <input type="hidden"  value="@ViewBag.TurId" />*@
+    <input type="hidden" name="id" asp-for="@Model.RezervasyonId" />
+    @*<input type="hidden" value="@ViewBag.KullanıId" />
+    <input type="hidden" value="@ViewBag.Odenecektutar " />*@
+    <div class="row">
+        <div class="col-md-8" style="margin-top:30px; margin-left:20px;">       
+            <div class="card" @*style="margin-top:20px;"*@>
+                <h5 class="card-header" style="font-size:medium;">İletişim Bilgileri</h5>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Ad</label>
+                                <input disabled asp-for="@Model.Yad" class="form-control" style="font-size:medium;" />
+                              
+                            </div>
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Soyad</label>
+                                <input disabled asp-for="@Model.Ysoyad" class="form-control" style="font-size:medium;" />
+                     
+                            </div>
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small; ">Cinsiyet</label>
+                                <select disabled asp-for="Ycinsiyet" class="form-control" style="font-size:small;">
+                                    @*<span asp-validation-for="Ycinsiyet" class="text-danger"></span>*@
+                                    <option>KADIN</option>
+                                    <option>ERKEK</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Email</label>
+                                <input disabled asp-for="Email" class="form-control" style="font-size:medium;" />
+                         
+                            </div>
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Tc Kimlik Numarası </label>
+                                <input disabled asp-for="Ytc" class="form-control" style="font-size:medium;" />
+             
+                            </div>
+                            <div class="col-md-3">
+                                <label style="color:#848484; font-size:small;">Telefon</label>
+                                <input disabled asp-for="Telefon" class="form-control" style="font-size:medium;"  />
+                            </div>
+                        </div>
+
+                    </p>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-3" style="margin-top:30px;">
+            <div class="card">
+                <h5 class="card-header" style="font-size:medium; text-align:center;">Tur Bilgileri</h5>
+                <div class="card-body">
+                    @foreach (var item in ViewBag.OtelBilgi)
+                    {
+                        <h5 class="card-title" style="text-align:center; font-size:medium;">@item.TurBasligi</h5>
+                        <img src="~/img/@item.Picture" alt="@item.Picture" style="width:300px; height:320px; align-content:center;" />
+                        <div class="row">
+                            <p style="text-align:left;">Tur Tarihi: <a href="#" style="text-decoration:none; text-align:right; color:#848484;"> @item.BaslangicTarihi.ToString("dd/MM/yyyy")-@item.BitisTarihi.ToString("dd/MM/yyyy")</a></p>
+                        </div>
+                        <div class="row">
+                            <p style="text-align:left; ">Otel:  @item.FiyatTanimi</p>
+                        </div>
+                        <div class="row">
+                            <p style="text-align:left;">Tur Kategori: @item.TurAltKategori</p>
+                        </div>
+                        <div class="row">
+
+                            @if (ViewBag.Cocuk == 0)
+                            {
+                                <p style="text-align:left;">
+                                    Misafir: @ViewBag.Yetiskin Yetişkin
+                                </p>
+                            }
+                            else
+                            {
+                                <p style="text-align:left;">
+                                    Misafir: @ViewBag.Yetiskin Yetişkin @ViewBag.Cocuk Çocuk
+                                </p>
+                            }
+
+                        </div>
+
+
+                        <div class="row">
+                            <p style="text-align:left;">Ödenen Tutar: @Model.OdenenTutar TL</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div style="text-align:center; margin-bottom:50px; margin-top:30px; ">
+                <button style="width:300px; height:50px; font-size:medium;" type="submit" class="btn btn-danger">İptal et</button>
+            </div>
+        </div>
+    </div>
+</form>

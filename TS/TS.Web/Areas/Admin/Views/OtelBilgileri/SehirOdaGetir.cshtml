@@ -1,0 +1,59 @@
+﻿@model List<OtelOdaViewModel>
+@{
+    ViewData["Title"] = "SehirOdaGetir";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model.Count == 0)
+{
+    <h3>
+        Herhangi bir Oda kaydı bulunmamaktadır.
+    </h3>
+    <a class="btn btn-primary" asp-action="OdaEkle" asp-controller="OtelBilgileri" asp-route-id="@ViewBag.otel">
+        Oda Bilgisi Ekle
+    </a>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="table-dark" style="text-align:center;" colspan="9">@ViewBag.Otelad</th>
+            </tr>
+            <tr>
+                <th style="text-align:center;">ODA GÖRSEL</th>
+                <th>ID</th>
+                <th>ODA TİPİ</th>
+                <th>İÇERİK BİLGİSİ</th>
+                <th>GİRİŞ TARİHİ</th>
+                <th>ÇIKIŞ TARİHİ</th>
+                <th>DAHİL BİLGİSİ</th>
+                <th>FİYAT</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="text-align:center;"><img src="~/img/@item.Picture" alt="@item.Picture" style="width:100px; height:100px;" /></td>
+                    <td>@item.Id</td>
+                    <td>@item.OdaTipi</td>
+                    <td>@item.IcerikBilgisi</td>
+                    <td>@item.GirisTarihi.ToString("d")</td>
+                    <td>@item.CikisTarihi.ToString("d")</td>
+                    <td>@item.Bilgi</td>
+                    <td>@item.Fiyat</td>
+                    <td style="text-align:center;">
+                        <a class="btn btn-danger btn-sm" asp-route-id="@item.Id" asp-action="OtelOdaSil" asp-controller="OtelBilgileri">Sil</a>
+                        <a class="btn btn-warning btn-sm" asp-route-id="@item.Id" asp-action="OtelOdaGuncelle" asp-controller="OtelBilgileri">Güncelle</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

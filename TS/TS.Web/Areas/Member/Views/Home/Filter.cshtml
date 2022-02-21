@@ -1,0 +1,93 @@
+﻿@model List<TurListViewModel>
+@{
+    ViewData["Title"] = "Filter";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3" id="fh5co-tours" class="fh5co-section-gray">
+        <div class="">
+            <div class="card" style="margin-left: 25px; border-width: 5px;border-style: ridge;">
+
+                <h5 class="card-header" style="font-size:medium; margin-left: 35px; margin-top:20px;">Filtreleme</h5>
+                <div class="card-body" style="margin-left: 35px;">
+                    <h5 class="card-title">Tur Çeşitleri</h5>
+                    <p class="card-text">
+                    <p><a asp-route-anagrup="Yurt İçi Turları" asp-action="Filter" asp-controller="Home" />Yurt İçi Turları</a></p>
+                    <p><a asp-route-anagrup="Yurt Dışı Turları" asp-action="Filter" asp-controller="Home" />Yurt Dışı Turları</a></p>
+                    <p><a asp-route-anagrup="Erken Rezervasyon Turları" asp-action="Filter" asp-controller="Home" />Erken Rezervasyon Turları</a></p>
+
+                    <h5 class="card-title">Yurt İçi Turlar</h5>
+                    <p class="card-text">
+                    <p><a asp-route-altkategori="Ege-Akdeniz Turları" asp-action="Filter" asp-controller="Home" />Ege-Akdeniz Turları</a></p>
+                    <p><a asp-route-altkategori="Karadeniz Turları" asp-action="Filter" asp-controller="Home" />Karadeniz Turları</a></p>
+                    <p><a asp-route-altkategori="İç Anadolu Turları" asp-action="Filter" asp-controller="Home" />İç Anadolu Turları</a></p>
+                    <p><a asp-route-altkategori="Gap Turları" asp-action="Filter" asp-controller="Home" />Gap Turları</a></p>
+                    <p><a asp-route-altkategori="Kapodakya Turları" asp-action="Filter" asp-controller="Home" />Kapodakya Turları</a></p>
+                    <p><a asp-route-altkategori="Butik Turları" asp-action="Filter" asp-controller="Home" />Butik Turları</a></p>
+                    <p><a asp-route-altkategori="Hafta Sonu Turları" asp-action="Filter" asp-controller="Home" />Hafta Sonu Turları</a></p>
+
+                    <h5 class="card-title">Yurt Dışı Turlar</h5>
+                    <p class="card-text">
+                    <p><a asp-route-altkategori="Avrupa Turları" asp-action="Filter" asp-controller="Home" />Avrupa Turları</a></p>
+                    <p><a asp-route-altkategori="İtalya Turları" asp-action="Filter" asp-controller="Home" />İtalya Turları</a></p>
+                    <p><a asp-route-altkategori="Yunanistan Turları" asp-action="Filter" asp-controller="Home" />Yunanistan Turları</a></p>
+                    <p><a asp-route-altkategori="Balkan Turları" asp-action="Filter" asp-controller="Home" />Balkan Turları</a></p>
+                    <p><a asp-route-altkategori="Uzakdoğu Turları" asp-action="Filter" asp-controller="Home" />Uzakdoğu Turları</a></p>
+
+                    <h5 class="card-title">Ulaşım Türü</h5>
+                    <p class="card-text">
+                    <p><a asp-route-ulasimturu="Lüks Otobüsler ile" asp-action="Filter" asp-controller="Home" />Lüks Otobüsler ile</a></p>
+                    <p><a asp-route-ulasimturu="Tren İle" asp-action="Filter" asp-controller="Home" />Tren ile</a></p>
+                    <p><a asp-route-ulasimturu="Türk Hava Yolları ile" asp-action="Filter" asp-controller="Home" />Türk Hava Yolları ile</a></p>
+                    @*<h5 class="card-title">Fiyat Aralığı</h5>
+        <p class="card-text">
+        <p><input type="text" value="" style="width:50px;" /> - <input type="text" value="" style="width:50px;" /></p>
+
+        <button type="submit" class="btn-sm">Listele</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div id="fh5co-tours" class="fh5co-section-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-2 text-center heading-section animate-box">
+                        @if (ViewBag.Baslik != null)
+                        {
+                            <h3>@ViewBag.Baslik</h3>
+                        }
+                        else
+                        {
+                            <h3>@ViewBag.Baslik2 Turlar</h3>
+                        }
+                        @*<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>*@
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="col-md-5 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <div>
+                                <img src="~/img/@item.Picture" alt="@item.Picture" class="img-responsive" style="width:457.5px; height:320px;">
+                                <div class="desc">
+                                    <span></span>
+                                    <h3>@item.TurBasligi</h3>
+                                    @*<span>3 nights + Flight 5*Hotel</span>*@
+                                    <span class="price">@item.Fiyat @item.ParaBirimi</span>
+                                    <a class="btn btn-primary btn-outline" asp-action="TurBilgileri" asp-controller="Home" asp-route-id="@item.TurId">Detaylar <i class="icon-arrow-right22"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

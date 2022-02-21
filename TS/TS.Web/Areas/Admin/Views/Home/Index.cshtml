@@ -1,0 +1,161 @@
+﻿@model List<TurListViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group row">
+            <div class="col-sm-9">
+                <a type="button" class="btn btn-success" asp-action="TurEkle" asp-controller="Home">
+                    Tur Ekle
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@foreach (var item in Model)
+{
+    <div class="card mr-3 mt-2" style="width: 19rem;">
+        <img class="card-img-top" src="~/img/@item.Picture" alt="Card image cap" width="150px;" height="200px;">
+        <div class="card-body">
+            <h5 class="card-title">@item.TurBasligi</h5>
+            <p class="card-text">@item.BaslangicTarihi.ToString("M")-@item.BitisTarihi.ToString("M")</p>
+            @*<a class="btn btn-danger" data-toggle="modal" data-target="#silmeEkrani" data-deger="@item.TurId">Kaldır</a>*@
+            <a class="btn btn-danger btn-sm" asp-action="DetaylarSil" asp-controller="Home" asp-route-id="@item.TurId">Kaldır</a>
+
+            @*<a href="" data-toggle="modal" data-target="#silmeEkrani" data-yavuz="@item.TurId" class="btn btn-danger btn-sm">
+
+                <i class="fas fa-times-circle mr-2"></i> Sil
+            </a>*@
+
+            <a class="btn btn-warning btn-sm" asp-action="OtelDetay" asp-controller="Home" asp-route-id="@item.TurId">Otel Detay</a>
+            <a asp-route-id="@item.TurId" asp-action="Detaylar" asp-controller="Home" class="btn btn-primary btn-sm">Detaylar</a>
+
+        </div>
+    </div>
+
+}
+
+
+<!-- Modal -->
+@*<div class="modal fade" id="silmeEkrani" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">UYARI</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinizden emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır Vazgeç</button>
+                <button id="btnSil" type="button" class="btn btn-primary">Evet Sil</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+@*<script src="~/twitter-bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/twitter-bootstrap/jquery/jquery.min.js"></script>
+    <script src="~/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>*@
+@*<script src="~/twitter-bootstrap/js/bootstrap.min.js"></script>
+<script src="~/twitter-bootstrap/jquery/jquery.min.js"></script>*@
+
+@*@section JavaScript{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#silmeEkrani").on("show.bs.modal", function (event) {
+                //let tetikleyenElement = $(event.relatedTarget);
+                var id = $("#TurId").val();
+                //let id = tetikleyenElement.data("yavuz");
+
+                $("#btnSil").click(function () {
+                    alert(id);
+                    $.ajax({
+                        type: "Get",
+                        url: "./Gorev/SilGorev",
+                        data: { id: id },
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8;",
+                        success: function () {
+                            alert("işlem tamam");
+                            window.location.reload();
+                            alert(id);
+                        },
+                        error: function (error) {
+                            alert(error.statusText);
+                            alert(id);
+                        }
+                    })
+                });
+            })
+        });
+    </script>
+}*@
+
+
+
+
+
+@*<div class="modal fade" id="silmeEkrani" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">UYARI</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Silmek istediğinizden emin misiniz?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır Vazgeç</button>
+                        <button id="btnSil" type="button" class="btn btn-primary">Evet Sil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="~/twitter-bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/twitter-bootstrap/jquery/jquery.min.js"></script>
+    <script src="~/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        @section JavaScript{
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#silmeEkrani").on("show.bs.modal", function (event) {
+                        let tetikleyenElement = $(event.relatedTarget);
+                        let id = tetikleyenElement.data("deger");
+
+                        $("#btnSil").click(function () {
+                            $.ajax({
+                                type: "Get",
+                                url: "./Home/TurKaldir",
+                                data: { id: id },
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8;",
+                                success: function () {
+                                    alert("işlem oluyor");
+                                    window.location.reload();
+                                },
+                                error: function (error) {
+                                    alert(error.statusText);
+                                }
+                            })
+                        });
+                    })
+                });
+            </script>
+
+        }*@

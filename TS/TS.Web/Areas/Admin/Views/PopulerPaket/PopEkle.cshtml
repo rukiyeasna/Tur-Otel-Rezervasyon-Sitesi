@@ -1,0 +1,19 @@
+﻿@model List<TurListViewModel>
+@{
+    ViewData["Title"] = "PopEkle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div class="card mr-3 mt-2" style="width: 18rem;">
+        <img class="card-img-top" src="~/img/@item.Picture" alt="Card image cap" width="150px;" height="200px;">
+        <div class="card-body">
+            <h5 class="card-title">@item.TurBasligi</h5>
+            <p class="card-text">@item.BaslangicTarihi.ToString("M")-@item.BitisTarihi.ToString("M")</p>
+            <a asp-route-id="@item.TurId" asp-action="Kaldir" asp-controller="PopulerPaket" class="btn btn-danger">Kaldır</a>
+            <a asp-route-id="@item.TurId" asp-action="PopEkleme" asp-controller="PopulerPaket" class="btn btn-primary">Detaylar</a>
+
+        </div>
+    </div>
+}

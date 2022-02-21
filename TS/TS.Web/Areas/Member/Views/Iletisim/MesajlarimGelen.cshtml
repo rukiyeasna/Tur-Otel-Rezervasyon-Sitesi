@@ -1,0 +1,157 @@
+﻿@model MesajMemberViewModel
+@{
+    ViewData["Title"] = "MesajlarimGelen";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+<style>
+    body {
+        background-color: #fffdd0;
+    }
+</style>
+
+
+    <div class="row" style="background-color:#fffdd0; margin-bottom:150px;">
+        <div class="row" style="margin-top:30px;">
+            <div class="col-md-9">
+            </div>
+            <div class="col-md-3">
+                <button style="text-align:right;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#form">Mesaj Yaz</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" id="fh5co-tours" class="fh5co-section-gray">
+                <div class="list-group" style="margin-left:20px;  font-size:medium;">
+                    <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                        <div class="btn-group">
+                            <a asp-action="Mesajlarim" asp-controller="Iletisim" style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle " data-toggle="">Gönderilen Mesajlar</a>
+                        </div>
+                        <div class="btn-group">
+                            <a asp-action="MesajlarimGelen" asp-controller="Iletisim" style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle active" data-toggle="">Gelen Mesajlar</a>
+                        </div>
+                        <div class="btn-group">
+                            <a asp-action="Yorumlarim" asp-controller="Iletisim" style="font-size:large;" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="">Yorum & Değerlendirme</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div style="margin-top:75px;" class="col-lg-8 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-description">
+                            </p>
+                            @if (ViewBag.Sayim == 0)
+                            {
+                                <div class="container">
+                                    <h4 style="margin-top:50px;">Herhangi bir mesajınız bulunmamaktadır.</h4>
+                                </div>
+                            }
+                            else
+                            {
+
+
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                @*<th>Kategori</th>*@
+                                                <th>Gönderen</th>
+                                                <th>İçerik</th>
+                                                <th>Gönderilme Tarihi</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ViewBag.Gelen)
+                                            {
+                                                <tr>
+                                                    <td>Seyehat Tur Şirketi</td>
+                                                    <td>@item.Icerik</td>
+                                                    <td>@item.Tarih</td>
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="exampleModalLabel">Mesaj Yaz</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="MesajGonder" asp-controller="Iletisim" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="gonderici" value="@ViewBag.Gonderici" />
+                    <input type="hidden" asp-for="@Model.Id" />
+
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label for="from">Kategori</label>
+                                <select type="text" class="form-control" id="from-place" asp-for="@Model.Kategori">
+                                    <option hidden value="null"></option>
+                                    <option>Şikayet</option>
+                                    <option>Talep</option>
+                                    <option>Bilgi</option>
+                                    <option>Teşekkür</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label for="from">Konu</label>
+                                <select type="text" class="form-control" id="from-place" asp-for="@Model.Konu">
+                                    <option hidden value="null"></option>
+                                    <option>Online Satış İşlemleri</option>
+                                    <option>Toplu Satış</option>
+                                    <option>Sponsorluk ve Etkinlik İşlemleri</option>
+                                    <option>İnsan Kaynakları</option>
+                                    <option>Diğer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label for="from">Mesaj</label>
+                                <textarea class="form-control" asp-for="@Model.Icerik"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    <button id="btnSil" type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

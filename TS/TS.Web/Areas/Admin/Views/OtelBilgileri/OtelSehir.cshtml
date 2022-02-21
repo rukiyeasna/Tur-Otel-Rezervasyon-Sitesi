@@ -1,0 +1,15 @@
+﻿@model ViewModel
+@{
+    ViewData["Title"] = "OtelSehir";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div style="float:left;">
+    @foreach (var item in Model.SehirViewModel)
+    {
+        <a asp-action="SehirOtelGetir" asp-controller="OtelBilgileri" asp-route-sehir="@item.Sehir" class="btn btn-lg mt-3" style="text-align:center; background-color:#F78536; color:white;">@item.Sehir</a>
+    }
+    </div>
+
+

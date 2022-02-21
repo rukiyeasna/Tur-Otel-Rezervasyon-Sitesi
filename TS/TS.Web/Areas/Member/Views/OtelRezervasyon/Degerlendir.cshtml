@@ -1,0 +1,165 @@
+﻿@model OtelPuanViewModel
+@{
+    ViewData["Title"] = "Degerlendir";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <form asp-action="Degerlendir" asp-controller="OtelRezervasyon" method="post">
+        <input type="hidden" name="OtelId" value="@ViewBag.OtelId" />
+        <input type="hidden" asp-for="@Model.OtelPuanId" />
+        <div class="row">
+            <div class="col-md-4" style="margin-top:30px; margin-bottom:300px; margin-left:50px;">
+
+                @foreach (var item in ViewBag.Rezervasyon)
+                {
+                    <div class="card">
+                        <h5 class="card-header" style="font-size:medium; text-align:center;">Tur Bilgileri</h5>
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align:center; font-size:medium;">@item.Otels.OtelAd</h5>
+                            <img src="~/img/@item.Otels.Picture" alt="@item.Otels.Picture" style="width:100%; height:100%; align-content:center;" />
+                            <div class="row">
+                                <p style="text-align:left;">Rezervasyon Tarihi: <a href="#" style="text-decoration:none; text-align:right; color:#848484;"> @item.OtelOdas.GirisTarihi.ToString("dd/MM/yyyy")-@item.OtelOdas.CikisTarihi.ToString("dd/MM/yyyy")</a></p>
+                            </div>
+                            <div class="row">
+                                <p style="text-align:left; ">Oda Tipi:  @item.OtelOdas.OdaTipi</p>
+                            </div>
+
+                            <div class="row">
+                                <p style="text-align:left;">Odenen Tutar: @item.OdenenTutar</p>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-4" style="margin-top:30px;">
+                        <h4 style="margin-left:55px;">Fiyat Performans </h4>
+                    </div>
+                    <div class="col-md-8" style=" margin-top:25px;">
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="1">1
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="2">2
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="3">3
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="4">4
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="5">5
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="6">6
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="7">7
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="8">8
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="9">9
+                        <input style="width:25px; height:25px;" type="radio" name="fiyatdeger" value="10">10
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top:30px;">
+                        <h4 style="margin-left:55px;">Hizmet Kalitesi </h4>
+                    </div>
+                    <div class="col-md-8" style=" margin-top:25px;">
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="1">1
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="2">2
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="3">3
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="4">4
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="5">5
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="6">6
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="7">7
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="8">8
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="9">9
+                        <input style="width:25px; height:25px;" type="radio" name="hizmetdeger" value="10">10
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top:30px;">
+                        <h4 style="margin-left:55px;">Temizlik/Hijyen </h4>
+                    </div>
+                    <div class="col-md-8" style=" margin-top:25px;">
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="1">1
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="2">2
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="3">3
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="4">4
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="5">5
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="6">6
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="7">7
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="8">8
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="9">9
+                        <input style="width:25px; height:25px;" type="radio" name="temizdeger" value="10">10
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top:30px;">
+                        <h4 style="margin-left:55px;">Personel</h4>
+                    </div>
+                    <div class="col-md-8" style=" margin-top:25px;">
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="1">1
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="2">2
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="3">3
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="4">4
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="5">5
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="6">6
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="7">7
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="8">8
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="9">9
+                        <input style="width:25px; height:25px;" type="radio" name="perdeger" value="10">10
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top:30px;">
+                        <h4 style="margin-left:55px;">Oda Konforu </h4>
+                    </div>
+                    <div class="col-md-8" style=" margin-top:25px;">
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="1">1
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="2">2
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="3">3
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="4">4
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="5">5
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="6">6
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="7">7
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="8">8
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="9">9
+                        <input style="width:25px; height:25px;" type="radio" name="odadeger" value="10">10
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top:30px;">
+                        <h4 style="margin-left:55px;">Yiyecek/İçecek Kalitesi </h4>
+                    </div>
+                    <div class="col-md-8" style=" margin-top:25px;">
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="1">1
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="2">2
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="3">3
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="4">4
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="5">5
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="6">6
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="7">7
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="8">8
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="9">9
+                        <input style="width:25px; height:25px;" type="radio" name="yiyecekdeger" value="10">10
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top:30px;">
+                        <h4 style="margin-left:55px;">Yorum </h4>
+                    </div>
+                    <div class="col-md-8" style=" margin-top:25px;">
+                        <textarea style="width:330px; height:300px;" asp-for="@Model.Yorum"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top:50px;">
+                        <button style="margin-left:55px;" type="submit" class="btn btn-primary btn-lg">Gönder</button>
+                    </div>
+                </div>
+
+            </div>
+
+    </form>
+

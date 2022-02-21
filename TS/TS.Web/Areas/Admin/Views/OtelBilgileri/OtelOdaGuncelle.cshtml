@@ -1,0 +1,138 @@
+﻿@model OtelOdaGuncelleViewModel
+@{
+    ViewData["Title"] = "OtelOdaGuncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (ViewBag.deger == 0)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.metin
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">OTEL ODA DETAYLAR</h4>
+            <form class="form-sample" asp-action="OtelOdaGuncelle" asp-controller="OtelBilgileri" enctype="multipart/form-data" method="post">
+
+                <p class="card-description">
+                </p>
+                <input type="hidden" asp-for="Id" name="id" />
+                <input type="hidden" asp-for="OtelId" />
+                <input type="hidden" asp-for="Id" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Oda Tipi</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.OdaTipi" />
+                                <span asp-validation-for="OdaTipi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">İçerik Bilgisi</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.IcerikBilgisi" />
+                                <span asp-validation-for="IcerikBilgisi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Giriş Tarihi</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" asp-for="@Model.GirisTarihi" />
+                                <span asp-validation-for="GirisTarihi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Çıkış Tarihi</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" asp-for="@Model.CikisTarihi" />
+                                <span asp-validation-for="CikisTarihi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Bilgi</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Bilgi" />
+                                <span asp-validation-for="Bilgi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Fiyat</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.Fiyat" />
+                                <span asp-validation-for="Fiyat" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Otel Oda Özellikleri</label>
+                            <div class="col-sm-9">
+                                <textarea id="editorid4" asp-for="OtelOdaOzellik" class="form-control"></textarea>
+                                <span asp-validation-for="OtelOdaOzellik" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Vize</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" asp-for="@Model.ParaBirimi" />
+                                <span asp-validation-for="ParaBirimi" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="hidden" name="Picture" value="@Model.Picture" />
+                            <img src="~/img/@Model.Picture" width="80" />
+                            <label></label>
+                            <span asp-validation-for="@Model.ResimDosyasi" class="text-danger"></span>
+                            <input asp-for="@Model.ResimDosyasi" class="form-control mt-2" value="@Model.Picture" />
+                            <span asp-validation-for="ResimDosyasi" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-warning btn-sm" @*asp-action="SehirOdaGetir" asp-controller="OtelBilgileri" asp-route-id="@Model.Id"*@>Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("editorid");
+        CKEDITOR.replace("editorid1");
+        CKEDITOR.replace("editorid2");
+        CKEDITOR.replace("editorid3");
+        CKEDITOR.replace("editorid4");
+        CKEDITOR.replace("editorid5");
+    </script>
+}
